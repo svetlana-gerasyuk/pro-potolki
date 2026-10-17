@@ -1,0 +1,114 @@
+/* Про Потолки: доработка «Продающего» (VS-12, палитра Б). Цвета те же: тёплый светлый фон, графитовые заголовки, терракотовые акценты.
+   Подключается после style-prod.css скриптом lab/redesign.py. Здесь только вёрстка: контейнер, логотип, фото, форма, галерея. */
+:root { --wrap: 1200px; --r: 20px; --c-terra: var(--c-accent); }
+html { scroll-padding-top: 92px; }
+#widget, #gallery { scroll-margin-top: 92px; }
+.s-btn { font-size: 1rem; }
+.s-btn:focus-visible, .s-chip:has(input:focus-visible) { outline: 3px solid color-mix(in srgb, var(--c-accent) 45%, transparent); outline-offset: 2px; }
+
+/* ---- шапка и логотип (знак: потолок в перспективе со световой точкой и линией) ---- */
+main, .s-foot { max-width: calc(1200px + 2 * var(--gut)); }
+.s-bar { padding-inline: max(var(--gut), calc(50% - 600px)); padding-block: 10px; min-height: 68px; }
+.s-logo { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; min-height: 48px; color: var(--c-accent); }
+.s-logo__mark { width: 42px; height: 42px; flex: none; display: block; }
+.s-logo__txt { display: grid; gap: 3px; line-height: 1; color: var(--c-ink); }
+.s-logo__main { font: 600 1.3rem/1 var(--f-display); letter-spacing: -.01em; white-space: nowrap; }
+.s-logo__main b { color: var(--c-accent); font-weight: 800; }
+.s-logo__sub { font: 600 .6rem/1 var(--f-text); letter-spacing: .3em; text-transform: uppercase; color: var(--c-ink-soft); white-space: nowrap; }
+.s-bar__tel { font-size: 1rem; }
+
+/* ---- первый экран ---- */
+.s-hero { grid-template-columns: minmax(0, 1fr) 460px; gap: clamp(32px, 4.4vw, 68px); align-items: start; padding: clamp(36px, 4.5vw, 64px) 0 clamp(48px, 6vw, 88px); }
+.s-hero__text { min-width: 0; }
+.s-eyebrow { font-size: .8rem; letter-spacing: .16em; margin-bottom: 18px; }
+.s-hero h1 { font-size: clamp(2.2rem, 4.6vw, 3.7rem); line-height: 1.04; letter-spacing: -.02em; }
+.s-hero .s-lead { font-size: 1.12rem; line-height: 1.6; margin-top: 22px; max-width: 52ch; }
+.s-ticks { margin-top: 26px; gap: 12px; }
+.s-ticks li { font-size: 1.06rem; }
+.s-rating { margin-top: 20px; font-size: 1rem; }
+/* фото реальной работы: крупно, в рамке, с подписью */
+.s-hero__photo { position: relative; margin: 32px 0 0; border-radius: 26px; overflow: hidden; box-shadow: 0 34px 70px -38px rgb(28 26 23 / .6); }
+.s-hero__photo img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 40%; border: 0; border-radius: 0; display: block; }
+.s-hero__photo::after { content: ""; position: absolute; inset: auto 0 0 0; height: 38%; background: linear-gradient(to top, rgb(28 26 23 / .62), transparent); pointer-events: none; }
+.s-hero__photo figcaption { position: absolute; left: 20px; bottom: 16px; z-index: 1; margin: 0; padding: 7px 14px; border-radius: 999px; background: rgb(255 250 244 / .92); color: var(--c-ink); font-size: .86rem; font-weight: 600; }
+
+/* ---- форма ---- */
+.s-hero__widget { position: sticky; top: 90px; display: grid; gap: 14px; }
+.s-tabs { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 5px; border-radius: 16px; background: color-mix(in srgb, var(--c-ink) 7%, transparent); }
+.s-tabs button { min-height: 50px; border: 0; border-radius: 12px; background: transparent; color: var(--c-ink); font: 600 .98rem/1.15 var(--f-text); padding: 8px 10px; cursor: pointer; transition: background-color .18s, color .18s, box-shadow .18s; }
+.s-tabs button.is-on { background: var(--c-surface); box-shadow: 0 6px 16px -8px rgb(28 26 23 / .5), 0 0 0 1px color-mix(in srgb, var(--c-ink) 10%, transparent); }
+.s-tabs button.s-tabs__urgent.is-on { background: var(--c-accent); color: var(--c-accent-ink); }
+.s-tabs button:focus-visible { outline: 3px solid color-mix(in srgb, var(--c-accent) 45%, transparent); outline-offset: 1px; }
+.s-widget { padding: 28px; gap: 22px; border-radius: 24px; }
+.s-widget[hidden] { display: none; }
+.s-widget__title { font-size: 1.5rem; line-height: 1.15; }
+.s-widget legend, .s-range label { font-size: .78rem; letter-spacing: .1em; }
+.s-range label b { font-size: 1.1rem; }
+.s-range input[type=range] { height: 34px; accent-color: var(--c-accent); }
+.s-exact { display: grid; gap: 8px; font-size: .9rem; font-weight: 600; color: var(--c-ink-soft); }
+.s-exact input { width: 100%; min-height: 52px; padding: 0 16px; border: 1.5px solid color-mix(in srgb, var(--c-ink) 22%, transparent); border-radius: 14px; background: #fff; color: var(--c-ink); font: 500 1.08rem/1 var(--f-text); font-variant-numeric: tabular-nums; }
+.s-exact input::placeholder { color: color-mix(in srgb, var(--c-ink) 38%, transparent); }
+.s-exact input:focus { outline: 3px solid color-mix(in srgb, var(--c-accent) 40%, transparent); outline-offset: 1px; border-color: var(--c-accent); }
+.s-exact input[aria-invalid="true"] { border-color: #a32d2d; }
+.s-exact__hint { margin: -10px 0 0; font-size: .86rem; color: #a32d2d; }
+.s-exact__hint[hidden] { display: none; }
+.s-chips { gap: 10px; }
+.s-chip { min-height: 54px; padding: 12px 18px; border-radius: 14px; border: 1.5px solid color-mix(in srgb, var(--c-ink) 18%, transparent); background: #fff; font-size: 1.02rem; font-weight: 500; transition: border-color .15s, background-color .15s, box-shadow .15s; }
+.s-chip:hover { border-color: color-mix(in srgb, var(--c-accent) 55%, transparent); }
+.s-widget .s-chips { flex-direction: column; flex-wrap: nowrap; }
+.s-widget .s-chip { width: 100%; gap: 14px; justify-content: flex-start; }
+.s-widget .s-chip::before { content: ""; flex: none; width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid color-mix(in srgb, var(--c-ink) 40%, transparent); background: #fff; box-sizing: border-box; transition: border-color .15s, background .15s, box-shadow .15s; }
+.s-widget .s-chip > span { flex: 1; }
+.s-chip:has(input:checked) { border-color: var(--c-accent); background: color-mix(in srgb, var(--c-accent) 9%, #fff); box-shadow: 0 0 0 1px var(--c-accent); font-weight: 600; }
+.s-widget .s-chip:has(input:checked)::before { border-color: var(--c-accent); background: var(--c-accent); box-shadow: inset 0 0 0 4px #fff; }
+.s-send__label { margin: 0; font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--c-ink-soft); }
+.s-note-calc { font-size: .92rem !important; opacity: 1 !important; color: var(--c-ink-soft); line-height: 1.45; }
+.s-bubble { margin-left: 0; padding: 16px 18px; border-radius: 18px 18px 6px 18px; }
+.s-bubble p { font-size: 1rem; line-height: 1.5; }
+/* WhatsApp и Telegram: два одинаковых действия */
+.s-send--pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.s-btn--msg { min-height: 56px; font-size: 1.04rem; font-weight: 700; width: 100%; }
+.s-btn--call { min-height: 58px; font-size: 1.1rem; width: 100%; }
+.s-urgent__lead { margin: 0; font-size: 1.02rem; line-height: 1.5; color: var(--c-ink-soft); }
+
+/* ---- галерея ---- */
+.s-gal { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: clamp(220px, 22vw, 300px); gap: 14px; }
+.s-gal li { margin: 0; min-height: 0; }
+.s-gal li:nth-child(1) { grid-row: span 2; }
+.s-gal li:nth-child(4) { grid-column: span 2; }
+.s-gal__item { position: relative; display: block; width: 100%; height: 100%; padding: 0; border: 0; border-radius: var(--r); overflow: hidden; cursor: zoom-in; background: color-mix(in srgb, var(--c-ink) 8%, transparent); }
+.s-gal__item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s cubic-bezier(.2, .7, .2, 1); }
+.s-gal__item:hover img { transform: scale(1.04); }
+.s-gal__item span { position: absolute; left: 0; right: 0; bottom: 0; padding: 36px 16px 14px; text-align: left; color: #fff8f0; font: 600 .98rem/1.2 var(--f-text); background: linear-gradient(to top, rgb(28 26 23 / .72), transparent); }
+.s-lightbox { border: 0; padding: 0; background: transparent; max-width: min(92vw, 860px); max-height: 92vh; overflow: visible; color: #fff8f0; }
+.s-lightbox::backdrop { background: rgb(28 26 23 / .86); }
+.s-lightbox img { display: block; max-width: 100%; max-height: 78vh; margin: 0 auto; border-radius: 16px; }
+.s-lightbox p { margin-top: 12px; text-align: center; font-size: .95rem; }
+.s-lightbox__close { position: absolute; top: -14px; right: -6px; width: 44px; height: 44px; border-radius: 50%; border: 0; background: #fff8f0; color: var(--c-ink); font-size: 1.6rem; line-height: 1; cursor: pointer; }
+
+/* ---- планшет и телефон ---- */
+@media (max-width: 1100px) {
+  .s-hero { grid-template-columns: 1fr; gap: 32px; }
+  .s-hero__widget { position: static; max-width: none; }
+  .s-hero__photo { display: block; }
+  .s-gal { grid-template-columns: repeat(2, 1fr); }
+  .s-gal li:nth-child(4) { grid-column: auto; }
+}
+@media (max-width: 640px) {
+  .s-bar { min-height: 60px; padding-block: 8px; }
+  .s-logo { gap: 10px; }
+  .s-logo__mark { width: 36px; height: 36px; }
+  .s-logo__main { font-size: 1.1rem; }
+  .s-logo__sub { font-size: .52rem; letter-spacing: .24em; }
+  .s-hero { padding-top: 24px; }
+  .s-hero h1 { font-size: clamp(2rem, 8.6vw, 2.5rem); }
+  .s-hero .s-lead { font-size: 1.03rem; }
+  .s-hero__photo { margin-top: 24px; border-radius: 20px; }
+  .s-hero__photo figcaption { left: 12px; bottom: 12px; font-size: .8rem; padding: 6px 12px; }
+  .s-widget { padding: 20px 18px; gap: 20px; }
+  .s-widget__title { font-size: 1.32rem; }
+  .s-tabs button { font-size: .92rem; min-height: 54px; }
+  .s-send--pair { grid-template-columns: 1fr 1fr; }
+  .s-gal { grid-auto-rows: 200px; gap: 10px; }
+  .s-gal__item span { font-size: .86rem; padding: 30px 12px 12px; }
+}
